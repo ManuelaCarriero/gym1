@@ -19,3 +19,7 @@ help(empty_instance)
 dir(empty_instance).public
 
 isinstance(empty_instance,Empty)
+
+namespace_0 = Empty()
+namespace_0.a = 1
+namespace_0.a
