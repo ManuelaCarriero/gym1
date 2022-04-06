@@ -17,3 +17,5 @@ empty_instance = Empty()
 help(empty_instance)
 
 dir(empty_instance).public
+
+isinstance(empty_instance,Empty)
