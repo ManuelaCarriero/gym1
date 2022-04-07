@@ -71,3 +71,14 @@ ModelX.max_speed
 """Thus __init__ sets the attributes of the instances 
 and not of the classes"""
 
+
+
+from dataclasses import dataclass
+
+@dataclass
+class Vehicle:
+    max_speed : int # Default
+    mileage : int = 10 
+
+ModelX = Vehicle(200,100)
+print(ModelX.max_speed, ModelX.mileage)
