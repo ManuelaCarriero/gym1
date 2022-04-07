@@ -7,11 +7,13 @@ This is if you want to add an image without resizing it:
 <br />
 If you want to choose the size:
 <br />
-`<img src="https://github.com/ManuelaCarriero/gym/blob/main/Images/Dreaming.jpg" width="100">`
+`<img src="https://github.com/ManuelaCarriero/gym/blob/main/Images/Dreaming.jpg" width="500">`
 <br />
 This is our sweet image:
 <br />
 <img src="https://github.com/ManuelaCarriero/gym/blob/main/Images/Dreaming.jpg" width="500">
+<br />
+<img src="https://github.com/ManuelaCarriero/gym/blob/main/Images/Autumn.gif" width="500">
 <br />
 Hoping to have a walk in a countryside like this soon, <br />
 *Cheers!* <br />
