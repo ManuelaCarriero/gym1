@@ -233,4 +233,32 @@ sns.lineplot("time", 'population', data=results, hue='α',
 #In questo caso lasciando (α, )
 #TypeError: cannot unpack non-iterable numpy.float64 object 
 
+#SIR Model SIMULATIONS###########################################
+def SIR_model(state, time, α, β, γ):
+    S, I, R, D = state
+    δR = + α*I
+    δD = + γ*I
+    δI = - γ*I - α*I + β*I*S
+    δS = - β*I*S
+    return δS, δI, δR, δD 
+    
+time = np.linspace(0, 5, 2**9+1)
+state0 = (1.0, 0.001, 0.0, 0.0)
+α, β, γ = 1, 10, 0.3
+
+res = odeint(SIR_model, y0=state0, t=time, args=(α, β, γ))
+res
+
+S_hat, I_hat, R_hat, D_hat = res.T
+
+S_hat
+
+res.T
+
+plt.plot(time, S_hat, label='S')
+plt.plot(time, I_hat, label='I')
+plt.plot(time, R_hat, label='R')
+plt.plot(time, D_hat, label='D')
+
+plt.legend()
 
