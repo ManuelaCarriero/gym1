@@ -92,3 +92,12 @@ low_value_cluster_20_h
 low_value_cluster_20_h = [[10.000000,0.240619]]
 low_value_cluster_20_h = pd.DataFrame(low_value_cluster_20_h, columns = ['N dias Treino', 'RMSE'])
 low_value_cluster_20_h
+
+######################################################################
+
+Dat = pd.DataFrame({'product_name': ['laptop', 'printer', 'printer',], 'price': [1200, 150, 1200],  'price1': [1200, 150, 1200]})
+Dat1 = pd.DataFrame({'product_name': ['laptop', 'printer', 'laptop', 'printer'], 'price2': [200, 150, 200, 999]})
+pd.merge(Dat, Dat1, on = 'product_name')
+
+#Apply merge method on pandas dataframes using chain rule
+Dat.merge(Dat1, on = 'product_name')
