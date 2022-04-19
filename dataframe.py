@@ -90,6 +90,8 @@ dataframe
 low_value_cluster_20_h = np.array([[10.000000,0.240619]])
 low_value_cluster_20_h
 low_value_cluster_20_h = [[10.000000,0.240619]]
+#low_value_cluster_20_h = [10.000000,0.240619] If you put it, you obtain:
+#ValueError: Shape of passed values is (2, 1), indices imply (2, 2)
 low_value_cluster_20_h = pd.DataFrame(low_value_cluster_20_h, columns = ['N dias Treino', 'RMSE'])
 low_value_cluster_20_h
 
