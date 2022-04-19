@@ -13,7 +13,8 @@ from itertools import islice
 def read_file(file_name,columns):
     with open("proof.txt") as txt_file:
         records = []
-        for line in txt_file:
+        skipped = islice(txt_file, 1, None)
+        for number, line in enumerate(skipped,2):
             record = []
             line.split(",")
             splits = re.findall(r"[\w']+", line)
@@ -32,7 +33,8 @@ data
 
 with open("proof.txt") as txt_file:
     records=[]
-    for line in txt_file:
+    skipped = islice(txt_file, 0, None)
+    for number, line in enumerate(skipped,1):
         record=[]
         line.split(",")
         splits = re.findall(r"[\w']+", line)
