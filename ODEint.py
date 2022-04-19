@@ -5,12 +5,14 @@ Created on Thu Apr 14 11:42:29 2022
 @author: asus
 """
 
-from scipy.integrate import odeint
+
 import numpy as np
 import matplotlib.pylab as plt
 import seaborn as sns
 import pandas as pd
 import scipy.stats as st
+from scipy.integrate import odeint
+from scipy.optimize import curve_fit
 
 # derivative
 def logistic(state, time, α, β):
@@ -262,3 +264,79 @@ plt.plot(time, D_hat, label='D')
 
 plt.legend()
 
+#########Fitting Differential Equations###############################
+
+"""Simulation of simpler differential equation:
+    harmonic oscillator"""
+
+def harmonic(state, time, a, b):
+    x, v = state
+    return a*v, -b*x
+
+time = np.linspace(0, 10, 2**5)
+y0 = (0, 1)
+res = odeint(harmonic, y0=y0, t=time, args=(1, 1))
+#y0 è il valore iniziale di x e v. args definisce a=b=1=constants
+res
+X, V = res.T
+plt.plot(time, X, label = 'X')
+plt.plot(time, V, label = 'V')
+plt.legend()
+
+res_obs = res+plt.randn(*res.shape)*0.2
+X_obs, V_obs = res_obs.T
+plt.plot(time, X, label = 'X')
+plt.plot(time, V, label = 'Y')
+plt.scatter(time, X_obs, label = '$X_{obs}$')
+plt.scatter(time, V_obs, label = '$Y_{obs}$')
+plt.legend()
+
+def harmonic_fit(xdata, α, β):
+    y0 = (0, 1)
+    res = odeint(harmonic, y0=y0, t=xdata, args=(α, β))
+    return res.ravel()
+
+p_avg, p_cov = curve_fit(harmonic_fit, time, res_obs.ravel(), 
+                         p0=[0.9, 1.1]) # try 0.5, 0.5
+
+p_avg
+p_cov
+
+
+
+class mapper_multivariate_normal:
+    def __init__(self, mean, cov):
+        self.mean = mean
+        self.cov = cov
+        # we have to use the cholesky decomposition to generate the samples
+        self.L = np.linalg.cholesky(cov)
+        
+    def __call__(self, quantiles):
+        values_standard = st.norm.isf(quantiles)
+        values =  self.L @ values_standard.reshape(len(self.L), -1)
+        values = values + self.mean.reshape(len(self.L), -1)
+        return values.T
+    
+    
+    
+#Al posto di plt.scatter(xdata, ydata)
+res_obs = res+plt.randn(*res.shape)*0.2
+X_obs, V_obs = res_obs.T
+#Mettili insieme agli altri alla fine così plotta tutto insieme
+#plt.scatter(time, X_obs, label = '$X_{obs}$')
+#plt.scatter(time, V_obs, label = '$Y_{obs}$')
+
+
+mapper = mapper_multivariate_normal(mean=p_avg, cov=p_cov)
+p_seq = a_generate(2, 50, mapper=mapper)
+x_base = np.linspace(0, 10, 51)
+
+for params in p_seq:
+    y_hat = harmonic_fit(x_base, *params).reshape(-1, 2)
+    plt.plot(x_base, y_hat, color='teal', alpha=0.2)
+    
+y_hat = harmonic_fit(x_base, *p_avg).reshape(-1, 2)
+plt.scatter(time, X_obs, label = '$X_{obs}$')
+plt.scatter(time, V_obs, label = '$Y_{obs}$')
+plt.plot(x_base, y_hat, color='r')
+plt.legend()
