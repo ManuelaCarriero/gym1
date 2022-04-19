@@ -8,6 +8,7 @@ import re
 import pandas as pd
 import numpy as np
 from itertools import islice
+import matplotlib as plt
 
 
 def read_file(file_name,columns):
@@ -46,3 +47,21 @@ records
 data = pd.DataFrame(records, columns= ['id','text','created_at','author.id','author.public_metrics.tweet_count','author.public_metrics.following_count','author.public_metrics.followers_count','public_metrics.like_count','public_metrics.retweet_count'])       
 data
 
+df = pd.read_csv('tweets_data.txt')
+df['created_at']
+df
+df.text[0]
+
+# convert text column to date time and keep only the date part  
+df['created_at'] = pd.to_datetime(df['created_at'])
+df['created_at']
+df['created_at'] = df['created_at'].dt.date
+df['created_at']
+
+# group by date taking the sum of public_metrics.like_count
+df1 = df.groupby(['created_at'])['public_metrics.like_count'].sum().reset_index()
+df1 = df1.set_index('created_at')
+
+# plot and show
+df1.plot()
+plt.show()
