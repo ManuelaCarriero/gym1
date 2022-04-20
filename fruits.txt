@@ -1,10 +1,10 @@
-ID	field1	field2	field3
-101				oranges
-101	apples                     
-101				
-200                               
-837		pears		            
-837			oranges
-837	apples	apples           
-576		pears	oranges
-576		pears		            
+ID field1 field2 field3
+101   oranges
+101 apples
+101
+200
+837  pears
+837   oranges
+837 apples apples
+576  pears oranges
+576  pears
