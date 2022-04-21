@@ -4,6 +4,10 @@ Created on Thu Apr  7 15:18:48 2022
 
 @author: asus
 """
+import numpy as np
+
+
+
 
 #Exercise 1: Print First 10 natural numbers using while loop        
 i=0 
@@ -27,3 +31,21 @@ def numbers_printer(n):
         i=i+1
 
 numbers_printer(10)
+
+"""
+A way to say "do this N times" is not using while loop
+but the for loop
+"""
+for i in range(5):
+    print("Today is Sunday and sunny day")
+
+
+#Just to understand the expression +=
+
+for i in np.arange(1,4):
+    print(i)
+    i += 1#It does nothing !
+
+for i in np.arange(1,4):
+    i += 1 #It adds 1 to each element of the numpy array... 
+    print(i) #And prints it.
