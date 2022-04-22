@@ -53,9 +53,14 @@ df['created_at']
 df
 df.columns
 
+df['created_at'] = pd.to_datetime(df['created_at'])
+df['created_at']
+df['created_at'] = df['created_at'].dt.date
+df['created_at']
 
 histogram_data = pd.concat([df[['created_at']],df[['public_metrics.like_count']]],axis=1)
-
+January_values = histogram_data[histogram_data['created_at'].astype(str).str.contains('2018-01')]
+January_values
 
 histogram_data
 df[['public_metrics.like_count']]
@@ -71,7 +76,37 @@ for date, n_likes in histogram_data.itertuples(index=False):
 print(dictionary)
 
 fig, ax = plt.subplots()
+ax.tick_params(axis='x', which='major', labelsize=8, width=2)
 ax.bar(dictionary.keys(),dictionary.values()) # Horrible
+plt.setp( ax.xaxis.get_majorticklabels(), rotation=-45, ha="left" )
+
+
+###############My nicer version happy#################################
+df = pd.read_csv('tweets_data.txt')
+
+df['created_at'] = pd.to_datetime(df['created_at'])
+
+df['created_at'] = df['created_at'].dt.date
+
+histogram_data = pd.concat([df[['created_at']],df[['public_metrics.like_count']]],axis=1)
+January_values = histogram_data[histogram_data['created_at'].astype(str).str.contains('2018-01')]
+January_values
+
+dictionary = {}
+
+for date, n_likes in January_values.itertuples(index=False):
+    dictionary[date] = n_likes
+
+print(dictionary)
+
+fig, ax = plt.subplots()
+ax.tick_params(axis='x', which='major', labelsize=8, width=2)
+ax.bar(dictionary.keys(),dictionary.values())
+plt.setp( ax.xaxis.get_majorticklabels(), rotation=-45, ha="left" )
+
+
+
+
 
 
 # SE User Solution
