@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 from itertools import islice
 import matplotlib.pylab as plt
-
+import matplotlib.dates as mdates
 
 def read_file(file_name,columns):
     with open("proof.txt") as txt_file:
@@ -81,16 +81,22 @@ ax.bar(dictionary.keys(),dictionary.values()) # Horrible
 plt.setp( ax.xaxis.get_majorticklabels(), rotation=-45, ha="left" )
 
 
-###############My nicer version happy#################################
+###############Dirty#################################
 df = pd.read_csv('tweets_data.txt')
 
-df['created_at'] = pd.to_datetime(df['created_at'])
+#df['created_at'] = pd.to_datetime(df['created_at'].str.split('T', n=1).str[0])
+#df
+#df['created_at'] = pd.to_datetime(df['created_at'])
 
-df['created_at'] = df['created_at'].dt.date
-
+#df['created_at'] = df['created_at'].dt.date
+df['created_at'] = df['created_at'].str.replace(".000Z", "")
+df.created_at
 histogram_data = pd.concat([df[['created_at']],df[['public_metrics.like_count']]],axis=1)
-January_values = histogram_data[histogram_data['created_at'].astype(str).str.contains('2018-01')]
+January_values = histogram_data[histogram_data['created_at'].astype(str).str.contains('2018-01')] #histogram_data['created_at'].astype(str)
 January_values
+type(January_values)
+January_values.shape
+
 
 dictionary = {}
 
@@ -98,14 +104,99 @@ for date, n_likes in January_values.itertuples(index=False):
     dictionary[date] = n_likes
 
 print(dictionary)
+len(dictionary)
 
 fig, ax = plt.subplots()
-ax.tick_params(axis='x', which='major', labelsize=8, width=2)
+ax.tick_params(axis='x', which='major', labelsize=4, width=2)
 ax.bar(dictionary.keys(),dictionary.values())
-plt.setp( ax.xaxis.get_majorticklabels(), rotation=-45, ha="left" )
+ax.set_ylabel("Counts")
+ax.set_title("Tweets likes counts in January 2018")
+ax.xaxis.set_tick_params(labelsize=4, rotation = 90)
+
+plt.setp( ax.xaxis.get_majorticklabels(), rotation=-45, ha="left", weight="bold")
 
 
 
+
+
+
+
+# Create figure and plot space
+fig, ax = plt.subplots(figsize=(12, 12))
+
+# Add x-axis and y-axis
+ax.bar(dictionary.keys(),
+       dictionary.values(),
+       color='purple')
+
+# Set title and labels for axes
+ax.set_xlabel('Date', fontsize = 20)
+ax.set_ylabel('Counts', fontsize = 20)
+ax.set_title('Tweets likes counts in January 2018', fontsize = 15, weight = "bold")
+
+
+#Define the date format
+
+
+# Ensure a major tick for each week using (interval=1) 
+ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
+ax.tick_params(axis='x', which='major', labelsize=15, width=2)
+plt.setp( ax.xaxis.get_majorticklabels(), rotation=-45, ha="left", weight="bold")
+
+plt.show()
+
+
+
+######################My nicer version happy########################
+df = pd.read_csv('tweets_data.txt')
+df['created_at'] = df['created_at'].str.replace(".000Z", "")
+df.created_at
+
+histogram_data = pd.concat([df[['created_at']],df[['public_metrics.like_count']]],axis=1)
+January_values = histogram_data[histogram_data['created_at'].astype(str).str.contains('2018-01')] #histogram_data['created_at'].astype(str)
+January_values
+January_values.shape
+
+
+dictionary = {}
+for date, n_likes in January_values.itertuples(index=False):
+    dictionary[date] = n_likes
+print(dictionary)
+
+
+# Create figure and plot space
+fig, ax = plt.subplots(figsize=(12, 12))
+
+# Add x-axis and y-axis
+ax.bar(dictionary.keys(),
+       dictionary.values(),
+       color='purple')
+
+# Set title and labels for axes
+ax.set_xlabel('Date', fontsize = 20)
+ax.set_ylabel('Counts', fontsize = 20)
+ax.set_title('Tweets likes counts in January 2018', fontsize = 15, weight = "bold")
+
+# Ensure a major tick for each week using (interval=1) 
+ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
+ax.tick_params(axis='x', which='major', labelsize=15, width=2)
+plt.setp( ax.xaxis.get_majorticklabels(), rotation=-45, ha="left", weight="bold")
+
+plt.show()
+
+
+
+
+
+
+
+
+# How to remove a substring from a string
+
+
+a_string = "programming"
+new_string = a_string. replace("ing", "")
+print(new_string)
 
 
 
