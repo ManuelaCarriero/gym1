@@ -8,9 +8,12 @@ Created on Tue Apr 19 18:32:58 2022
 import numpy as np
 import pylab as plt
 import random as rn
+import pandas as pd
 
 import typing
 from enum import Enum
+
+import scipy.stats as st
 
 def removal(state):
     return state*0.1
@@ -114,8 +117,100 @@ def simulation(starting_state, time_limit):
         
 time_limit = 100
 result = simulation(starting_state=5, time_limit=time_limit)
+result
+observation.state
+for observation in result:
+    print(observation.state)
 
 len(result)
 
 for res in result[-5:]:
     print(res)
+
+##########################TRYING TO UNDERSTAND THE FOLLOWING PIECE OF CODE#######
+data = pd.read_csv("fruits.txt", sep = " ")
+data
+
+from collections import Counter
+
+counts = Counter(data.ID)
+counts #It works
+
+counts = Counter()
+counts[data.ID] #It does not work
+for ID in data.ID:
+    counts[data.ID] += Counter(data.ID) #TypeError: unhashable type: 'Series'
+print(counts)
+
+lst = ['Mary', 'Mary', 'Mary', 'Mary','Dog']
+counts = Counter(lst)
+counts
+
+counts = Counter()
+for item in lst:
+    counts[lst] += Counter(lst)#TypeError: unhashable type: 'list'
+
+for item in lst:
+    counts[lst] += Counter(lst).values()
+print(counts)
+
+counts[lst] #it does not work
+
+counts = Counter()
+for observation in result:
+   counts[observation.state]
+
+print(counts) #printa tutti 0
+    
+#CONCLUSION: IT IS SOMETHING THAT WORKS WIH NAMEDTUPLES CLASS
+
+distribution = Counter()
+for observation in result:
+    state = observation.state
+    residency_time = observation.time_of_residency
+    distribution[state] += 1
+print(distribution)
+#############################
+
+distribution = Counter()
+for observation in result:
+    state = observation.state
+    residency_time = observation.time_of_residency
+    distribution[state] += residency_time/time_limit
+print(distribution)
+
+fig, ax = plt.subplots()
+ax.bar(distribution.keys(), distribution.values())
+#xlim = [5,12.5]
+
+values = np.arange(20)
+pmf = st.poisson(10).pmf(values)
+ax.bar(values, pmf, alpha=0.5)
+
+def generate_distribution(observation_sequence):
+    distribution = Counter()
+    for observation in observation_sequence:
+        state = observation.state
+        residency_time = observation.time_of_residency
+        distribution[state] += residency_time
+        
+    total_time_observed = sum(distribution.values())
+    for state in distribution:
+        distribution[state] /= total_time_observed
+    return distribution
+
+time_limit = 1_000
+result = simulation(starting_state=5, time_limit=time_limit)
+distribution = generate_distribution(result)
+
+fig, ax = plt.subplots()
+ax.bar(distribution.keys(), distribution.values())
+
+values = np.arange(20)
+pmf = st.poisson(10).pmf(values)
+ax.bar(values, pmf, alpha=0.5)
+
+#Add the following steps of the slides, in particular plot
+#the probability distribution in case of absorbing states 
+#and fixed time events
+#moreover do the final exercise.
