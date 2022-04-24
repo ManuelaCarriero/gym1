@@ -13,7 +13,7 @@ This is our sweet image:
 <br />
 <img src="https://github.com/ManuelaCarriero/gym/blob/main/Images/Dreaming.jpg" width="500">
 <br />
-With the gif animated images, it is the same: 
+With the gif animated images, it is the same code line: 
 <br />
 <img src="https://github.com/ManuelaCarriero/gym/blob/main/Images/Autumn.gif" width="500">
 <br />
