@@ -17,7 +17,7 @@ With the gif animated images, it is the same:
 <br />
 <img src="https://github.com/ManuelaCarriero/gym/blob/main/Images/Autumn.gif" width="500">
 <br />
-Hoping to have a nice journey through this "Pythonic" world, <br />
+Hoping to have a nice journey through this "pythonic" world, <br />
 *Cheers!* <br />
 Manuela
 
