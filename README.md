@@ -1,4 +1,4 @@
-# What is the aim of this repository ? edit
+# What is the aim of this repository ? 
 This repo just stores all the little exercizes that I did to learn Python programming and how to use Git and Github. <br />
 <br />
 This is if you want to add an image without resizing it:
