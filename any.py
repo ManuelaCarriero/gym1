@@ -6,9 +6,9 @@ Created on Sat May  7 18:26:16 2022
 """
 
 m = 1
-n = [1, 5, 8]
+t = [1, 5, 8]
 
-if m >0 and any(n):
+if m >0 and any(t):
     print("Hello")
 else:
     print("Hi")
