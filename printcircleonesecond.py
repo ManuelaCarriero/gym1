@@ -6,63 +6,76 @@ Created on Fri Apr 28 10:38:39 2023
 """
 
 import matplotlib.pyplot as plt
+from itertools import cycle
+import time
 
+startTime = time.time()
 
 def circle1():
     
-    circle1 = plt.Circle((0.5, 0.5), 0.1, color='green')
+    fig, ax = plt.subplots()
     
-    fig, ax1 = plt.subplots()
+    circle1 = plt.Circle((0.5, 0.5), 0.1, facecolor='None', edgecolor='green')
+        
+    ax.add_patch(circle1)
     
-    ax1.add_patch(circle1)
+    plt.show()
 
 circle1()
 
-from itertools import cycle
+time.sleep(1)
 
-import time
+def circle2():
+    
+    fig, ax = plt.subplots()
+    
+    circle2 = plt.Circle((0.5, 0.5), 0.2, facecolor='None', edgecolor='green')
+        
+    ax.add_patch(circle2)
+    
+    plt.show()
 
-def progress(iterator):
-    cycling = cycle("\|/")
-    for element in iterator:
-        print(next(cycling), end="\r")
-        yield element
-    print(" \r", end='')
+circle2()
 
+time.sleep(1)
 
+def circle3():
+    
+    fig, ax = plt.subplots()
+    
+    circle3 = plt.Circle((0.5, 0.5), 0.3, facecolor='None', edgecolor='green')
+        
+    ax.add_patch(circle3)
+    
+    plt.show()
 
-for idx in progress(range(10)):
-    time.sleep(0.5)
+circle3()
 
-circle2 = plt.Circle((0.5, 0.5), 0.2, color='green')
-
-fig, ax = plt.subplots()
-
-ax.add_patch(circle2)
-
-
-
-def progress(iterator):
-    cycling = cycle("\|/")
-    for element in iterator:
-        print(next(cycling), end="\r")
-        yield element
-    print(" \r", end='')
-
+time.sleep(1)
 
 
-for idx in progress(range(10)):
-    time.sleep(0.5)
 
 
-circle3 = plt.Circle((0.5, 0.5), 0.3, color='green')
+def circle4():
+    
+    fig, ax = plt.subplots()
+    
+    circle4 = plt.Circle((0.5, 0.5), 0.4, facecolor='None', edgecolor='green')
+        
+    ax.add_patch(circle4)
+    
+    plt.show()
 
-fig, ax = plt.subplots()
+circle4()
 
-ax.add_patch(circle3)
 
-circle4 = plt.Circle((0.5, 0.5), 0.4, color='green')
 
-fig, ax = plt.subplots()
 
-ax.add_patch(circle4)
+endTime = time.time()
+elapsedTime = endTime - startTime
+print("Elapsed Time = %s" % elapsedTime)
+"""
+print("Before the sleep statement")
+time.sleep(5)
+print("After the sleep statement")
+"""
