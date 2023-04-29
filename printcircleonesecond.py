@@ -47,6 +47,10 @@ while count in range(0,10):
         
         ax.set_facecolor('lightgreen')
         
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
+        
         plt.show()
     
     circle1()
@@ -58,10 +62,14 @@ while count in range(0,10):
         fig, ax = plt.subplots()
         
         circle2 = plt.Circle((0.5, 0.5), 0.2, facecolor='None', edgecolor='green')
-        
-        ax.set_facecolor('lightgreen')
             
         ax.add_patch(circle2)
+    
+        ax.set_facecolor('lightgreen')
+        
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
         
         plt.show()
     
@@ -78,6 +86,10 @@ while count in range(0,10):
         ax.set_facecolor('lightgreen')
             
         ax.add_patch(circle3)
+        
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
         
         plt.show()
     
@@ -97,6 +109,10 @@ while count in range(0,10):
         ax.set_facecolor('lightgreen')
             
         ax.add_patch(circle4)
+        
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
         
         plt.show()
     
@@ -140,6 +156,10 @@ while count in range(0,10):
             
         ax.add_patch(circle)
         
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
+        
         plt.show()
     
     circle6()
@@ -155,6 +175,10 @@ while count in range(0,10):
         ax.set_facecolor('lightgreen')
             
         ax.add_patch(circle)
+        
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
         
         plt.show()
     
@@ -172,6 +196,10 @@ while count in range(0,10):
             
         ax.add_patch(circle)
         
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
+        
         plt.show()
     
     circle4()
@@ -187,6 +215,10 @@ while count in range(0,10):
         ax.set_facecolor('lightgreen')
             
         ax.add_patch(circle)
+        
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
         
         plt.show()
     
@@ -204,6 +236,10 @@ while count in range(0,10):
             
         ax.add_patch(circle)
         
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
+        
         plt.show()
     
     circle2()
@@ -219,6 +255,10 @@ while count in range(0,10):
         ax.set_facecolor('lightgreen')
             
         ax.add_patch(circle)
+        
+        fig.patch.set_facecolor('lightgreen')
+        
+        plt.axis('off')
         
         plt.show()
     
