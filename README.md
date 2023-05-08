@@ -34,3 +34,4 @@ g { color: Green }
 
 [Look, ma! Red!](red)
 
+$${\color{red}Red}$$
