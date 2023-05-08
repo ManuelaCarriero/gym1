@@ -21,4 +21,5 @@ Hoping to have a nice journey through this "pythonic" world, <br />
 *Cheers!* <br />
 Manuela
 <span style="color:blue">some *blue* text</span>.
+ <r>TODO:</r> Important thing to do.
 
