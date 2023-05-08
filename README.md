@@ -37,3 +37,5 @@ a[href='red'] {
 
 <a href="red">Look, ma! Red!</a>
 
+[Look, ma! Red!](red)
+
