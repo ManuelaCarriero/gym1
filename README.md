@@ -20,6 +20,7 @@ With the gif animated images, it is the same code line:
 Hoping to have a nice journey through this "pythonic" world, <br />
 *Cheers!* <br />
 Manuela
+$${\color{red}Manuela}$$
 <span style="color:blue">some *blue* text</span>.
 <style>
 r { color: Red }
