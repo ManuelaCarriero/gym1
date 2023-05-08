@@ -36,3 +36,7 @@ g { color: Green }
 [Look, ma! Red!](red)
 
 `$${\color{red}Red}$$`
+
+<span style="color:red">
+Text content
+</span>
