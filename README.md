@@ -28,3 +28,12 @@ g { color: Green }
 </style>
 - <r>TODO:</r> Important thing to do.
 
+a[href='red'] {
+    color: red;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
+<a href="red">Look, ma! Red!</a>
+
